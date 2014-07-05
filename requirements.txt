@@ -1,0 +1,8 @@
+APScheduler==2.1.2
+argparse==1.2.1
+httplib2==0.9
+oauth2==1.5.211
+rauth==0.7.0
+requests==2.3.0
+wsgiref==0.1.2
+python-binary-memcached==0.24.2
