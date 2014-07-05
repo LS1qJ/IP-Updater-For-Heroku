@@ -11,9 +11,9 @@ Enable Naked Domain in Heroku. (For Dozens(http://dozens.jp/) user)
 dozens_ip_updater/config.pyを編集し、Herokuにデプロイすることで利用することができます。  
 1. `git clone https://github.com/LS1qJ/IP-Updater-For-Heroku.git`クローンする  
 2. config.pyを編集する(詳細は後述)しする  
-3. config.pyの変更をcommitする
-    `git add dozens_ip_updater/config.py`
-    `git commit -m "setup config.py"`
+3. config.pyの変更をcommitする  
+    `git add dozens_ip_updater/config.py`  
+    `git commit -m "setup config.py"`  
 4. `heroku create fooname` Heroku上にアプリを作成(fooname部分は任意のアプリ名)  
 5. `heroku config:add TZ=Asia/Tokyo --app fooname` Herokuのタイムゾーンを設定  
 6. `heroku addons:add memcachier:dev --app fooname` HerokuにMemcachierのAddon(無料)を追加  
