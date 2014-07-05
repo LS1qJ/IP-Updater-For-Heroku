@@ -9,17 +9,29 @@ Enable Naked Domain in Heroku. (For Dozens(http://dozens.jp/) user)
 
 ##利用方法##
 dozens_ip_updater/config.pyを編集し、Herokuにデプロイすることで利用することができます。  
-1. `git clone https://github.com/LS1qJ/IP-Updater-For-Heroku.git`クローンする  
-2. config.pyを編集する(詳細は後述)しする  
-3. config.pyの変更をcommitする  
-    `git add dozens_ip_updater/config.py`  
-    `git commit -m "setup config.py"`  
-4. `heroku create fooname` Heroku上にアプリを作成(fooname部分は任意のアプリ名)  
-5. `heroku config:add TZ=Asia/Tokyo --app fooname` Herokuのタイムゾーンを設定  
-6. `heroku addons:add memcachier:dev --app fooname` HerokuにMemcachierのAddon(無料)を追加  
-7. `heroku addons:add papertrail --app fooname` HerokuにLog用のAddon(無料)追加  
-8. `git push heroku master` Herokuにアプリをデプロイ  
-9. `heroku ps:scale clock=1 --app fooname` Heroku上のアプリを開始  
+* クローンする  
+    * `git clone https://github.com/LS1qJ/IP-Updater-For-Heroku.git`
+* dozens_ip_updater/config.pyを編集する(詳細は後述)  
+    * DOZENS_ID,DOZENS_APIKEY,APPHOSTSの3つは設定が必須  
+* config.pyの変更をcommitする  
+    * `git add dozens_ip_updater/config.py`  
+    * `git commit -m "setup config.py"`  
+* Heroku上にアプリを作成(fooname部分は任意のアプリ名)  
+    * `heroku create fooname`  
+* HerokuにMemcachierのAddon(無料)を追加  
+    * `heroku addons:add memcachier:dev --app fooname`  
+* Herokuのタイムゾーンを設定  
+    * `heroku config:add TZ=Asia/Tokyo --app fooname`   
+* HerokuにLog用のAddon(無料)追加  
+    * `heroku addons:add papertrail --app fooname`   
+* Herokuにアプリをデプロイ  
+    * `git push heroku master`  
+* Heroku上のアプリを開始  
+    * `heroku ps:scale clock=1 --app fooname`  
+
+お疲れさまでした  
+20分毎(configのCRONでセット)に自動でDozensのAレコードが更新されはずです
+
 
 ---
 ##仕組み##
