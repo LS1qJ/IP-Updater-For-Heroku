@@ -7,6 +7,14 @@ Enable Naked Domain in Heroku. (For Dozens(http://dozens.jp/) user)
 [Dozens](http://dozens.jp/)のAPIを利用して、Herokuでネイキッドドメインを利用できるようにします。  
 利用にはDozenzのアカウントとAPIKEYが必要です。  
 
+
+##仕組み##
+DozensのAPIを利用してAレコード自動的に更新します。  
+下記のルーティンを20分に一度自動実行するアプリをHerokuにデプロイすることで動作します。  
+* xxx.herokuapp.com　へアクセスし、現在のIPアドレスを取得  
+* DozenzAPIを利用して、現在のIPアドレスを独自ドメインのAレコードに設定  
+
+---
 ##利用方法##
 dozens_ip_updater/config.pyを編集し、Herokuにデプロイすることで利用することができます。  
 * クローンする  
@@ -34,13 +42,6 @@ dozens_ip_updater/config.pyを編集し、Herokuにデプロイすることで�
 
 
 ---
-##仕組み##
-DozensのAPIを利用してAレコード自動的に更新します。  
-下記のルーティンを20分に一度自動実行します。  
-* xxx.herokuapp.com　へアクセスし、現在のIPアドレスを取得  
-* DozenzAPIを利用して、現在のIPアドレスを独自ドメインのAレコードに設定  
-
----
 ##config.py設定方法##
 * `CROM`　アプリの実行タイミングを設定　デフォルトは20分間隔  
 * `DOZENS_ID`　DozensのアカウントID  
@@ -56,3 +57,19 @@ DozensのAPIを利用してAレコード自動的に更新します。
 * `SMTP`　エラーメール送信に利用するSMTPサーバーのURL  
 * `MAIL_ACCOUNT`　SMTPのユーザーアカウント  
 * `MAIL_PWD`　SMTPのパスワード  
+
+---
+##ローカルで動かす際の注意  
+config.pyのUSEMEMCACHEはデフォルトでTrueになっています。  
+ローカル環境にMemcacheサーバーが無い場合は期待通りの動作をしない可能性があります。  
+Memcacheをローカルでテストする場合は下記の環境変数を設定してください。  
+`MEMCACHIER_SERVERS` 127.0.0.1:11211 (ローカルMemcachサーバー)  
+`MEMCACHIER_USERNAME`　必要なら設定  
+`MEMCACHIER_PASSWORD`　必要なら設定  
+
+---
+##その他
+テストが甘いと思います。。ごめんなさい  
+こちらのブログにも[関連記事](http://ls1qj.hatenablog.com/entry/2014/07/06/134108)を書いてます
+　
+
